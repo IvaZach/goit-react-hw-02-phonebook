@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-
 import { nanoid } from 'nanoid';
-
 
 export class App extends Component {
   state = {
@@ -42,11 +40,11 @@ export class App extends Component {
       <>
         <h1>PHONE BOOK</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='inputName'>Name</label>
+          <label htmlFor="inputName">Name</label>
           <input
             type="text"
             name="name"
-            id='inputName'
+            id="inputName"
             value={this.state.name}
             onChange={this.handleChange}
             required
