@@ -4,7 +4,13 @@ import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
     name: '',
     number: '',
   };
@@ -32,6 +38,18 @@ export class App extends Component {
 
   reset = () => {
     this.setState({ name: '', number: '' });
+  };
+
+  filterContact = () => {
+    const { filter, contacts } = this.state;
+
+    if (filter.length) {
+      return contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      );
+    } else {
+      return contacts;
+    }
   };
 
   render() {
@@ -74,7 +92,20 @@ export class App extends Component {
             Add contact
           </button>
         </form>
+
         <h2 className="display-4">Contacts</h2>
+        <label className="display-6">
+          Find contacts by name
+          <input
+            type="text"
+            name="filter"
+            value={this.state.filter}
+            onChange={this.handleChange}
+            className="form-control"
+          ></input>
+          {console.log(this.state.filter)}
+        </label>
+
         <table className="table">
           <thead>
             <tr>
@@ -83,8 +114,7 @@ export class App extends Component {
             </tr>
           </thead>
           <tbody>
-          {console.log(this.state.contacts)}
-            {this.state.contacts.map(({ name, number, id }) => (
+            {this.filterContact().map(({ name, number, id }) => (
               <tr key={name} id={id}>
                 <td>{name}</td>
                 <td>{number}</td>
@@ -96,4 +126,3 @@ export class App extends Component {
     );
   }
 }
-
