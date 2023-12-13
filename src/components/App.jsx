@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-// import { InputForm }  from './InputForm/InputForm';
-// import { nanoid } from 'nanoid';
-import { Contacts } from './InputForm/Contacts/Contacts';
+
+import { nanoid } from 'nanoid';
+
 
 export class App extends Component {
   state = {
@@ -10,46 +10,57 @@ export class App extends Component {
     name: '',
   };
 
-  // handleChange = evt => {
-  //   this.setState({ name: evt.target.value });
-  //   console.log('name:', evt.target.value);
-  //   console.log('evt.target:', evt.target);
-  // };
+  handleChange = evt => {
+    const { name, value } = evt.currentTarget;
+    this.setState({ [name]: value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    console.log('form:', e.currentTarget.elements.familyName);
-    const nameInput = form.elements.familyName.value;
-    console.log('Name:', nameInput);
-   
-    this.setState({
-      contacts: [],
-      name: nameInput,
+
+    const contact = {
+      name: this.state.name,
+      id: nanoid(6),
+    };
+    console.log('contact.name:', contact.name);
+    console.log('contact.id:', contact.id);
+    console.log('contact:', contact);
+
+    this.setState(prevState => {
+      return { contacts: [...prevState.contacts, contact] };
     });
-    console.log('6', this.state);
-    form.reset();
+
+    this.reset();
   };
 
+  reset = () => {
+    this.setState({ name: '' });
+  };
 
   render() {
     return (
       <>
-        <h1>PHONEBOOK</h1>
+        <h1>PHONE BOOK</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor='inputName'>Name</label>
           <input
             type="text"
-            name="familyName"
+            name="name"
+            id='inputName'
+            value={this.state.name}
+            onChange={this.handleChange}
             required
-            // value={this.state.name}
           />
           <button type="submit">Add contact</button>
         </form>
         <h2>Contacts</h2>
         <ul>
-          <Contacts name={this.state.name} />
-          {console.log('5', this.state.name)}
+          {console.log(this.state.contacts)}
+          {this.state.contacts.map(({ name, id }) => (
+            <li key={name} id={id}>
+              {name}
+            </li>
+          ))}
         </ul>
       </>
     );
