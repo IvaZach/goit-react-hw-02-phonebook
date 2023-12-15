@@ -2,18 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContactListItem from 'components/ContactListItem/ContactListItem';
 
-const ContactList = ({ filterContact }) => (
+const ContactList = ({ onFilter, onDelete }) => (
   <>
     <table className="table">
       <thead>
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Number</th>
+          <th scope="col">delete</th>
         </tr>
       </thead>
       <tbody>
-        {filterContact().map(({ name, number, id }) => (
-          <ContactListItem name={name} number={number} id={id} key={name} />
+        {onFilter().map(({ name, number, id }) => (
+          <ContactListItem
+            name={name}
+            number={number}
+            id={id}
+            key={name}
+            onDelete={onDelete}
+          />
         ))}
       </tbody>
     </table>
@@ -21,7 +28,8 @@ const ContactList = ({ filterContact }) => (
 );
 
 ContactList.propTypes = {
-  filterContact: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default ContactList;
