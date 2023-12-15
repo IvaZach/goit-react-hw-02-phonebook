@@ -46,7 +46,6 @@ class ContactForm extends Component {
             className="form-control"
             placeholder="first and last name"
           />
-          <div className="valid-feedback">Looks good!</div>
         </div>
         <div className="mb-3">
           <label htmlFor="inputTel" className="form-label">
@@ -63,7 +62,6 @@ class ContactForm extends Component {
             placeholder="###-##-##"
             pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
           />
-          <div className="valid-feedback">Looks good!</div>
         </div>
 
         <button type="submit" className="btn btn-primary">
