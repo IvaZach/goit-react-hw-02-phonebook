@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Filter = ({ onChange, filter }) => (
-  <label className="h4">
+  <label className="form-label">
     Find contacts by name
     <input
       type="text"
