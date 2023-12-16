@@ -18,7 +18,7 @@ const ContactList = ({ onFilter, onDelete }) => (
             name={name}
             number={number}
             id={id}
-            key={name}
+            key={id}
             onDelete={onDelete}
           />
         ))}

@@ -4,7 +4,7 @@ import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 import Section from './components/Section/Section';
-import InitialContacts from './components/Data/InitialContacts.json';
+import InitialContacts from './data/InitialContacts.json';
 
 export class App extends Component {
   state = {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ContactListItem = ({ name, number, onDelete, id }) => {
   return (
     <>
-      <tr key={name}>
+      <tr>
         <td>{name}</td>
         <td>{number}</td>
         <td>
